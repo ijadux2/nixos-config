@@ -110,6 +110,27 @@ services.displayManager.gdm.enable = true;
   yazi
   github-desktop
   opencode
+  cliphist
+  fuzzel
+  grim
+  wl-clipboard
+  slurp
+  hyprlock
+  xdg-desktop-portal-hyprland
+  mesa
+  libgcc
+  fontconfig
+  hyprpolkitagent
+  wayland-utils
+  wlr-protocols
+  cmake
+  meson
+  ninja
+  pkg-config
+  hyprutils
+  nerd-fonts.jetbrains-mono
+  nwg-look
+  matugen
 
   # Bluetooth tools
   blueman
