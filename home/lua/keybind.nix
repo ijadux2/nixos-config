@@ -16,6 +16,45 @@ keymaps = [
     key = "jk";
     action = "<ESC>";
   }
+  # Bufferline navigation
+  {
+    mode = "n";
+    key = "<Tab>";
+    action = "<Cmd>BufferLineCycleNext<CR>";
+    options.desc = "Next buffer";
+  }
+  {
+    mode = "n";
+    key = "<S-Tab>";
+    action = "<Cmd>BufferLineCyclePrev<CR>";
+    options.desc = "Previous buffer";
+  }
+  # Comment.nvim keybindings
+  {
+    mode = "v";
+    key = "<leader>c";
+    action.__raw = "function() require('Comment.api').toggle.linewise(vim.fn.visualmode()) end";
+    options.desc = "Toggle comment for selection";
+  }
+  # Additional keybindings
+  {
+    mode = "n";
+    key = "<leader><leader>";
+    action.__raw = "function() require('telescope.builtin').find_files() end";
+    options.desc = "Find files";
+  }
+  {
+    mode = "n";
+    key = "<leader>t";
+    action = ":terminal<CR>";
+    options.desc = "Open terminal";
+  }
+  {
+    mode = "n";
+    key = "<leader>l";
+    action = ":%<CR>";
+    options.desc = "Execute command on all lines";
+  }
   # LazyVim-inspired keybindings
   {
     mode = "n";

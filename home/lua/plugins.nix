@@ -25,15 +25,14 @@ plugins.treesitter = {
     highlight.enable = true;
   };
 };
-plugins.telescope = {
-  enable = true;
-  keymaps = {
-    "<leader><leader>" = "find_files";
-    "<leader>g" = "live_grep";
-    "<leader>fb" = "buffers";
-    "<leader>fh" = "help_tags";
+  plugins.telescope = {
+    enable = true;
+    keymaps = {
+      "<leader>g" = "live_grep";
+      "<leader>fb" = "buffers";
+      "<leader>fh" = "help_tags";
+    };
   };
-};
 
 
 
@@ -41,7 +40,7 @@ plugins.telescope = {
 
 
 plugins = {
-  web-devicons.enable = true;
+  # web-devicons.enable = true;
   lualine.enable = true;
   bufferline.enable = true;
   which-key.enable = true;
@@ -55,6 +54,9 @@ plugins = {
   todo-comments.enable = true;
   trouble.enable = true;
   illuminate.enable = true;
+  
+  # Comment.nvim
+  comment.enable = true;
   
   neo-tree = {
     enable = true;
@@ -202,6 +204,7 @@ plugins = {
       starter = {};
       icons = {};
     };
+    mockDevIcons = true;
   };
   };
  };

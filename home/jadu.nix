@@ -17,6 +17,9 @@
     
     # LazyVim-inspired settings
     globals.have_nerd_font = true;
+    
+    # Use mini.icons instead of web-devicons
+    globals.miniicons_enable = true;
 
     colorschemes.catppuccin.enable = true;
 
