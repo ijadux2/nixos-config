@@ -24,6 +24,14 @@ plugins.treesitter = {
     indent.enable = true;
     highlight.enable = true;
   };
+  grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+    vim
+    regex
+    lua
+    bash
+    markdown
+    markdown_inline
+  ];
 };
   plugins.telescope = {
     enable = true;
@@ -33,10 +41,6 @@ plugins.treesitter = {
       "<leader>fh" = "help_tags";
     };
   };
-
-
-
-
 
 
 plugins = {
@@ -54,7 +58,36 @@ plugins = {
   todo-comments.enable = true;
   trouble.enable = true;
   illuminate.enable = true;
-  
+  nui.enable = true;
+  nvim-notify.enable = true;
+  noice = {
+    enable = true;
+    settings = {
+      lsp = {
+        override = {
+          "vim.lsp.util.convert_input_to_markdown_lines" = true;
+          "vim.lsp.util.stylize_markdown" = true;
+          "cmp.entry.get_documentation" = true;
+        };
+      };
+      presets = {
+        bottom_search = true;
+        command_palette = true;
+        long_message_to_split = true;
+        inc_rename = false;
+      };
+      routes = [
+        {
+          filter = {
+            event = "msg_show";
+            find = "written";
+          };
+          opts = { skip = true; };
+        }
+      ];
+    };
+  };
+
   # Comment.nvim
   comment.enable = true;
   
@@ -74,124 +107,6 @@ plugins = {
     };
   };
 
-  alpha = {
-    enable = true;
-    settings.layout = [
-      {
-        type = "padding";
-        val = 2;
-      }
-      {
-        type = "text";
-        val = [
-          "███╗   ██╗██╗   ██╗ ██████╗ ██████╗ ██████╗ ███████╗"
-          "████╗  ██║██║   ██║██╔════╝██╔═══██╗██╔══██╗██╔════╝"
-          "██╔██╗ ██║██║   ██║██║     ██║   ██║██████╔╝█████╗  "
-          "██║╚██╗██║╚██╗ ██╔╝██║     ██║   ██║██╔══██╗██╔══╝  "
-          "██║ ╚████║ ╚████╔╝ ╚██████╗╚██████╔╝██║  ██║███████╗"
-          "╚═╝  ╚═══╝  ╚═══╝   ╚═════╝ ╚═════╝ ╚═╝  ╚═╝╚══════╝"
-        ];
-        opts = {
-          hl = "AlphaHeader";
-          position = "center";
-        };
-      }
-      {
-        type = "padding";
-        val = 2;
-      }
-      {
-        type = "text";
-        val = "󰈻 LazyVim-inspired NixVim";
-        opts = {
-          hl = "AlphaComment";
-          position = "center";
-        };
-      }
-      {
-        type = "padding";
-        val = 2;
-      }
-      {
-        type = "group";
-        val = [
-          {
-            type = "button";
-            val = "󰈞  Find File";
-            on_press.__raw = "function() require('telescope.builtin').find_files() end";
-            opts = {
-              hl = "AlphaButtons";
-              shortcut = "f";
-              position = "center";
-              width = 50;
-              keymap = [ "n" "f" "" ];
-            };
-          }
-          {
-            type = "button";
-            val = "󰅩  New File";
-            on_press.__raw = "function() vim.cmd('ene | startinsert') end";
-            opts = {
-              hl = "AlphaButtons";
-              shortcut = "n";
-              position = "center";
-              width = 50;
-              keymap = [ "n" "n" "" ];
-            };
-          }
-          {
-            type = "button";
-            val = "󰊄  Recent Files";
-            on_press.__raw = "function() require('telescope.builtin').oldfiles() end";
-            opts = {
-              hl = "AlphaButtons";
-              shortcut = "r";
-              position = "center";
-              width = 50;
-              keymap = [ "n" "r" "" ];
-            };
-          }
-          {
-            type = "button";
-            val = "󰈭  Find Word";
-            on_press.__raw = "function() require('telescope.builtin').live_grep() end";
-            opts = {
-              hl = "AlphaButtons";
-              shortcut = "g";
-              position = "center";
-              width = 50;
-              keymap = [ "n" "g" "" ];
-            };
-          }
-          {
-            type = "button";
-            val = "󰆼  Quit";
-            on_press.__raw = "function() vim.cmd('qa') end";
-            opts = {
-              hl = "AlphaButtons";
-              shortcut = "q";
-              position = "center";
-              width = 50;
-              keymap = [ "n" "q" "" ];
-            };
-          }
-        ];
-      }
-      {
-        type = "padding";
-        val = 2;
-      }
-      {
-        type = "text";
-        val.__raw = "function() return '󰖂 ' .. os.date('%Y-%m-%d %H:%M') end";
-        opts = {
-          hl = "AlphaFooter";
-          position = "center";
-        };
-      }
-    ];
-  };
-
   mini = {
     enable = true;
     modules = {
@@ -207,5 +122,5 @@ plugins = {
     mockDevIcons = true;
   };
   };
- };
+  };
 }

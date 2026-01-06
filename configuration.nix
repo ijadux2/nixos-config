@@ -108,8 +108,8 @@ services.displayManager.gdm.enable = true;
   zsh 
   nushell
   yazi
-  opencode   
   github-desktop
+  opencode
 
   # Bluetooth tools
   blueman
