@@ -19,6 +19,13 @@
     ripgrep
     nodejs
     nix-ld
+    fastfetch
+    nitch
+    cmatrix
+    glow
+    gum
+    waybar
+    swaynotificationcenter
   ];
 
   home.sessionVariables = {
@@ -30,10 +37,6 @@
   imports = [
     ./lua/plugins.nix
   ];
-
-  
-  
-  
 
   programs.zsh = {
     enable = true;
@@ -54,6 +57,16 @@
       ls = "eza --icons";
       lt = "eza --icons --tree";
       code = "opencode";
+      gh = "github-desktop";
+      gi = "git add .";
+      gc = "git commit -m";
+      gs = "git status";
+      ch = "chmod +x";
+      rm = "rm -rf";
+      mk = "mkdir";
+      t = "touch";
+      open = "xdg-open";
+      fa = "fastfetch";
     };
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;

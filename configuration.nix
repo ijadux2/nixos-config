@@ -59,9 +59,15 @@ services.displayManager.gdm.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
     jack.enable = true;
-
+    
+    # Enable Bluetooth audio
     wireplumber.enable = true;
   };
+
+  # Enable Bluetooth
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+  services.blueman.enable = true;
 
    services.libinput.enable = true;
 
@@ -102,8 +108,13 @@ services.displayManager.gdm.enable = true;
   zsh 
   nushell
   yazi
-  opencode
+  opencode   
   github-desktop
+
+  # Bluetooth tools
+  blueman
+  bluez
+  pulseaudio
   ];
 
 programs.nix-ld.libraries = with pkgs; [
