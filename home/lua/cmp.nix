@@ -4,7 +4,12 @@
   programs.nixvim = {
     plugins = {
       # 1. Enable the snippet engine (Required for cmp to work)
-      luasnip.enable = true;
+      luasnip = {
+        enable = true;
+        settings = {
+          enable_autosnippets = true;
+        };
+      };
       cmp-nvim-lsp.enable = true;
       cmp-buffer.enable = true;
       cmp-path.enable = true;
@@ -15,12 +20,13 @@
         enable = true;
         autoEnableSources = true;
         settings = {
-          # Define your snippet expansion
-          snippet.expand = "function(args) require('luasnip').lsp_expand(args.body) end";
- 
-  completion = {
-    completeopt = "menu,menuone,noselect";
-  };
+          snippet = {
+            expand = "function(args) require('luasnip').lsp_expand(args.body) end";
+          };
+
+          completion = {
+            completeopt = "menu,menuone,noselect";
+          };
           # LazyVim-style sources with priorities
           sources = [
             { name = "nvim_lsp"; priority = 1000; } # Code completion from LSP
@@ -38,24 +44,8 @@
             "<CR>" = "cmp.mapping.confirm({ select = true })";
             "<Down>" = "cmp.mapping.select_next_item()";
             "<Up>" = "cmp.mapping.select_prev_item()";
-            "<Tab>" = ''
-              cmp.mapping(function(fallback)
-                if require("luasnip").expand_or_jumpable() then
-                  require("luasnip").expand_or_jump()
-                else
-                  fallback()
-                end
-              end, { "i", "s" })
-            '';
-            "<S-Tab>" = ''
-              cmp.mapping(function(fallback)
-                if require("luasnip").jumpable(-1) then
-                  require("luasnip").jump(-1)
-                else
-                  fallback()
-                end
-              end, { "i", "s" })
-            '';
+            "<Tab>" = "cmp.mapping(function(fallback)\n              if cmp.visible() then\n                cmp.select_next_item()\n              elseif require('luasnip').expand_or_locally_jumpable() then\n                require('luasnip').expand_or_jump()\n              else\n                fallback()\n              end\n            end, { 'i', 's' })";
+            "<S-Tab>" = "cmp.mapping(function(fallback)\n              if cmp.visible() then\n                cmp.select_prev_item()\n              elseif require('luasnip').locally_jumpable(-1) then\n                require('luasnip').jump(-1)\n              else\n                fallback()\n              end\n            end, { 'i', 's' })";
           };
 
           # Bordered windows (optional, but looks better)

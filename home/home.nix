@@ -3,33 +3,14 @@
 {
   home.username = "jadu";
   home.homeDirectory = "/home/jadu";
-
   home.stateVersion = "25.11";
-
-  home.packages = with pkgs; [
-    starship
-    zoxide
-    zsh-autosuggestions
-    zsh-syntax-highlighting
-    zip
-    unzip
-    eza
-    gnome-tweaks
-    gnomeExtensions.dock-from-dash
-    ripgrep
-    nodejs
-    nix-ld
-    fastfetch
-    nitch
-    cmatrix
-    glow
-    gum
-    waybar
-    swaynotificationcenter
-  ];
+  nixpkgs.config.allowUnfree = true;
 
   home.sessionVariables = {
     EDITOR = "nvim";
+    # Flutter environment variables for web development
+    CHROME_EXECUTABLE = "${pkgs.chromium}/bin/chromium";
+    GOOGLE_CHROME = "${pkgs.chromium}/bin/chromium";
   };
 
   programs.home-manager.enable = true;
@@ -43,12 +24,13 @@
     oh-my-zsh = {
       enable = true;
       theme = "robbyrussell";
-      plugins = [ "git" "sudo" ];
+      plugins = [ "git" "sudo" "starship" ];
     };
     shellAliases = {
       ll = "ls -l";
       update = "home-manager switch";
-      rebuild = "sudo nixos-rebuild switch --flake /home/jadu/codespace/nixos-config#itachi";
+      rebuild = "sudo nixos-rebuild switch --flake /home/jadu/codespace/nix#itachi";
+      clean = "sudo nix-collect-garbage -d";
       v = "nvim";
       x = "clear";
       q = "exit";
@@ -67,13 +49,17 @@
       t = "touch";
       open = "xdg-open";
       fa = "fastfetch";
+      btop = "btop --force-utf";
     };
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     initContent = ''
-      eval "$(starship init zsh)"
       eval "$(zoxide init zsh)"
+     export NIXPKGS_ALLOW_UNFREE=1
+      CHROME_EXECUTABLE="/etc/profiles/per-user/jadu/bin/chromium
+      GOOGLE_CHROME="/etc/profiles/per-user/jadu/bin/chromium
     '';
+# zsh prompt =  export PS1="%{%F{243}%}%n%{%F{245}%}@%{%F{249}%}%m %{%F{254}%}%1~ %{%f%}$ " 
   };
 }
 
